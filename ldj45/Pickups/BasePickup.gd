@@ -38,5 +38,6 @@ func _process(delta):
 			isPlayerOverlapping = true
 		
 	if(Input.is_action_just_pressed("pickup") and isPlayerOverlapping):
-		print("pickup")
-		
+		print("pickup")		
+		var player_vars = get_node("/root/globals")
+		player_vars.locks.erase("lockGreen")
