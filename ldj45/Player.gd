@@ -1,17 +1,5 @@
 extends KinematicBody2D
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
 export var max_speed = 500
 export var acceleration = 8000
 var velocity: Vector2
@@ -37,9 +25,42 @@ func _physics_process(delta):
 	
 	velocity = velocity.clamped(max_speed)
 	velocity = move_and_slide(velocity)
+	update_walk_anim(velocity)
 	
 	if velocity != Vector2.ZERO:
 		#var direction = look_at(velocity)
 		#print(direction)
-		set_rotation(velocity.angle())
+		pass #set_rotation(velocity.angle())
+
+export var texture_up:Texture
+export var texture_down:Texture
+export var texture_side:Texture
+export var texture_walk_up:Texture
+export var texture_walk_down:Texture
+export var texture_walk_side:Texture
+
+
+var scale_x = 7
+
+func update_walk_anim(speed: Vector2):
+	var sprite = $Sprite
+	if speed.length() < 0.1:
+		if sprite.texture == texture_walk_up:
+			sprite.texture = texture_up
+		elif sprite.texture == texture_walk_down:
+			sprite.texture = texture_down
+		elif sprite.texture == texture_walk_side:
+			sprite.texture = texture_side
+	else:
+		if abs(speed.x) > abs(speed.y):
+			sprite.texture = texture_walk_side
+			sprite.scale.x = scale_x * sign(speed.x)
+		else:
+			sprite.scale.x = scale_x
+			if speed.y > 0:
+				sprite.texture = texture_walk_down
+			else:
+				sprite.texture = texture_walk_up
+				
+			
 	

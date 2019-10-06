@@ -1,17 +1,29 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://ldj45/Player.gd" type="Script" id=1]
-[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://legend of faune files/Sprites/Player/sprites/walk-up/walk-up-3.png" type="Texture" id=2]
+[ext_resource path="res://legend of faune files/Sprites/Player/sprites/walk-down/walk-down-3.png" type="Texture" id=3]
+[ext_resource path="res://legend of faune files/Sprites/Player/sprites/walk-side/walk-side-3.png" type="Texture" id=4]
+[ext_resource path="res://legend of faune files/Sprites/Player/sprites/walk_up.tres" type="Texture" id=5]
+[ext_resource path="res://legend of faune files/Sprites/Player/sprites/walk_down.tres" type="Texture" id=6]
+[ext_resource path="res://legend of faune files/Sprites/Player/sprites/walk_side.tres" type="Texture" id=7]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 60.0
 
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 1 )
+texture_up = ExtResource( 2 )
+texture_down = ExtResource( 3 )
+texture_side = ExtResource( 4 )
+texture_walk_up = ExtResource( 5 )
+texture_walk_down = ExtResource( 6 )
+texture_walk_side = ExtResource( 7 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
-scale = Vector2( 2, 2 )
-texture = ExtResource( 2 )
+position = Vector2( 0, -48.7481 )
+scale = Vector2( 7, 7 )
+texture = ExtResource( 7 )
