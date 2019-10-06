@@ -29,3 +29,14 @@ func _on_Pickup_body_entered(body):
 
 func _on_Pickup_body_exited(body):
 	$TextField.visible = false
+
+func _process(delta):
+	var isPlayerOverlapping = false
+	var bods = get_overlapping_bodies ()
+	for bod in bods:
+		if(bod.name == "Player"):
+			isPlayerOverlapping = true
+		
+	if(Input.is_action_just_pressed("pickup") and isPlayerOverlapping):
+		print("pickup")
+		
